@@ -1,38 +1,76 @@
-.App {
+h2 {
+  font-size: 0.8em;
+  font-weight: 400;
+  color: #8e8e8e;
+}
+
+p {
+  font-size: 1em;
+}
+
+.messanger {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.messanger-form {
+  padding: 20px;
+  position: fixed;
+  bottom: 20px;
+  z-index: 1;
+  background-color: #e9e9eb;
+  width: 90%;
+  margin-left: 5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.messanger-formControl {
+  flex-direction: row !important;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.MuiCard-root {
+  box-shadow: none !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.message {
+  margin: 10px;
+  width: fit-content;
+}
+
+.message-user {
+  margin-left: auto;
+  text-align: left !important;
+}
+
+.message-userCard {
+  background-color: rgb(0, 132, 255) !important;
+  color: white !important;
+  border-radius: 18px !important;
+}
+
+.message-userCard p {
+  color: #efefef !important;
+}
+
+.message-guestCard {
+  text-align: left;
+  background-color: #e9e9eb !important;
+  border-radius: 18px !important;
+}
+
+.MuiCardContent-root {
+  padding: 10px 12px !important;
+}
+
+.MuiIconButton-colorPrimary,
+.MuiFormLabel-root.Mui-focused {
+  color: rgb(0, 132, 255) !important;
+}
+
+.MuiIconButton-root.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26) !important;
+  background-color: transparent;
+}
+
+.MuiCard-root {
+  word-wrap: break-word;
 }
