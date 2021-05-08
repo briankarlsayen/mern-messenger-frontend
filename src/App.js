@@ -21,7 +21,7 @@ function App() {
   const sync = async () => {
     await axios.get('/retrieve/conversation')
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         setMessages(res.data)
       })
   }
