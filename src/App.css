@@ -10,6 +10,13 @@ p {
 
 .messanger {
   text-align: center;
+  padding-bottom: 120px;
+}
+
+.messanger-header {
+  padding: 20px 0;
+  background-color: rgb(0, 132, 255);
+  color: white;
 }
 
 .messanger-form {
@@ -18,8 +25,8 @@ p {
   bottom: 20px;
   z-index: 1;
   background-color: #e9e9eb;
-  width: 90%;
-  margin-left: 5%;
+  width: 80%;
+  margin-left: 10%;
 }
 
 .messanger-formControl {
@@ -31,14 +38,26 @@ p {
   box-shadow: none !important;
 }
 
+.messanger-body {
+  padding: 0 10%;
+}
+
 .message {
-  margin: 10px;
+  margin: 10px 0;
   width: fit-content;
+  overflow-x: hidden;
 }
 
 .message-user {
   margin-left: auto;
   text-align: left !important;
+  word-break: break-all;
+}
+
+.message-text {
+  word-break: break-all;
+  max-width: 50vw;
+  width: 100%;
 }
 
 .message-userCard {
@@ -73,4 +92,9 @@ p {
 
 .MuiCard-root {
   word-wrap: break-word;
+}
+
+.MuiInputBase-root {
+  width: 63vw;
+  max-width: 400px;
 }

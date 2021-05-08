@@ -55,7 +55,7 @@ function App() {
 
   return (
     <div className="messanger">
-      <h1>Messenger</h1>
+      <h1 className="messanger-header">Messenger</h1>
       <form className="messanger-form" onSubmit={handleSubmit}>
         <FormControl className="messanger-formControl" >
           <InputLabel>Send a message</InputLabel>
@@ -65,13 +65,19 @@ function App() {
           </IconButton>
         </FormControl>
       </form>
+      <div className="messanger-body">
       <FlipMove>
-        {
-          messages.map(message => (
-                <Message key={message._id}  user={user} message={message} />
-          ))
-        }
+        
+          {
+            messages.map(message => (
+                  <Message key={message._id}  user={user} message={message} />
+            ))
+          }
+        
+        
       </FlipMove>
+      </div>
+      
     </div>
   );
 }
