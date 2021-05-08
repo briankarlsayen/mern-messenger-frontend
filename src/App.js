@@ -1,44 +1,58 @@
 import React, {useState, useEffect} from 'react';
 import Message from './components/Message';
-import firebase from 'firebase';
 import FlipMove from 'react-flip-move';
-import { Button, FormControl, IconButton, Input, InputLabel } from '@material-ui/core';
+import { FormControl, IconButton, Input, InputLabel } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import './App.css';
-import db from './components/firebase';
+import axios from './components/axios';
+import Pusher from 'pusher-js';
+
+const pusher = new Pusher('639703e137123e691dd9', {
+  cluster: 'ap1'
+});
 
 function App() {
   const [ text, setText ] = useState('');
   const [messages, setMessages] = useState([]);
   const [ user, setUser ] = useState('haha');
 
-  const login = () => {
-    return setUser(prompt('Input your name?'));
-  };
-  useEffect(() => {
-    login()
-  }, []);
   
+
+  const sync = async () => {
+    await axios.get('/retrieve/conversation')
+      .then((res) => {
+        console.log(res.data);
+        setMessages(res.data)
+      })
+  }
+
   useEffect(() => {
-    db.collection('messages')
-    .orderBy('timestamp', 'desc')
-    .onSnapshot(snapshot => {
-      setMessages(snapshot.docs.map(doc =>({ id: doc.id, data:doc.data()})))
-    })
-    
+    sync();
   }, [])
 
+  useEffect(() => {
+    const channel = pusher.subscribe('messages');
+    channel.bind('newMessage', function(data) {
+      sync()
+    })
+  }, [user])
+
+  //prompt user input
+  useEffect(() => {
+    setUser(prompt('Input your name?'));
+  }, []);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    db.collection('messages').add({
-      text: text,
+    axios.post('/save/message', {
       user: user,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    //setMessages([...messages, {user: user, text: text}]);
+      text: text,
+      timestamp: Date.now()
+    })
     setText('');
   }
+
   return (
     <div className="messanger">
       <h1>Messenger</h1>
@@ -53,13 +67,11 @@ function App() {
       </form>
       <FlipMove>
         {
-          messages.map(({id, data}) => (
-                <Message key={id} user={user} message={data} />
+          messages.map(message => (
+                <Message key={message._id}  user={user} message={message} />
           ))
         }
       </FlipMove>
-      
-      
     </div>
   );
 }

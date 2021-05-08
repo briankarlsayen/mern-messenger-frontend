@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent } from '@material-ui/core';
 
 const Message = forwardRef(({message, user}, ref) => {
 
